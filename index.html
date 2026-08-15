@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پل ثقلین | طلوع عصر جدید</title>
+    <style>
+        /* ===== فونت تیتر ===== */
+        @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+            background: radial-gradient(circle at 20% 0, #17634d 0%, #062f28 42%, #031f1a 100%);
+            color: #f7f4e9;
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        .app {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* ===== هدر ===== */
+        .top {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(3, 31, 26, 0.86);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(232, 201, 107, 0.28);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 0 0 18px 18px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .mark {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #e8c96b;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            color: #e8c96b;
+            font-size: 22px;
+            background: rgba(232, 201, 107, 0.08);
+        }
+
+        .brand b {
+            font-size: 18px;
+            font-weight: 900;
+            color: #f7f4e9;
+        }
+
+        .brand small {
+            display: block;
+            color: #b7cfc6;
+            font-size: 10px;
+            font-weight: 400;
+        }
+
+        .top button,
+        .iconbtn {
+            border: 1px solid rgba(232, 201, 107, 0.28);
+            background: rgba(255, 255, 255, 0.075);
+            color: #f7f4e9;
+            border-radius: 12px;
+            padding: 9px 12px;
+            font-family: 'Vazirmatn', sans-serif;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .top button:hover {
+            background: rgba(232, 201, 107, 0.15);
+        }
+
+        /* ===== هیرو ===== */
+        .hero {
+            margin: 22px 0;
+            padding: 36px 26px;
+            border: 1px solid rgba(232, 201, 107, 0.28);
+            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(232, 201, 107, 0.13), rgba(255, 255, 255, 0.035));
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(232, 201, 107, 0.18);
+            border-radius: 50%;
+            width: 330px;
+            height: 330px;
+        }
+        .hero::before {
+            right: -130px;
+            top: -170px;
+        }
+        .hero::after {
+            left: -170px;
+            bottom: -250px;
+        }
+
+        .eyebrow {
+            color: #e8c96b;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 6vw, 64px);
+            line-height: 1.2;
+            margin: 10px 0;
+            font-weight: 900;
+            position: relative;
+            z-index: 1;
+            color: #f7f4e9;
+        }
+
+        .hero p {
+            max-width: 750px;
+            color: #d7e6df;
+            font-size: 15px;
+            line-height: 2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .credit {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 7px 12px;
+            align-items: center;
+            margin-top: 16px;
+            padding: 11px 15px;
+            border: 1px solid rgba(232, 201, 107, 0.35);
+            border-radius: 16px;
+            background: rgba(232, 201, 107, 0.07);
+            color: #f4e7b1;
+            font-size: 12px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .credit b {
+            color: #ffffff;
+        }
+        .credit .date {
+            color: #e8c96b;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #f1d47a, #caa84a);
+            color: #12382f !important;
+            border: 0 !important;
+            font-weight: 900;
+        }
+
+        .primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(232, 201, 107, 0.3);
+        }
+
+        /* ===== بخش‌ها ===== */
+        .section {
+            margin-top: 28px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            margin: 0 0 14px;
+            font-weight: 800;
+            color: #f7f4e9;
+        }
+
+        /* ===== کارت‌ها ===== */
+        .card {
+            background: rgba(255, 255, 255, 0.075);
+            border: 1px solid rgba(232, 201, 107, 0.28);
+            border-radius: 20px;
+            padding: 17px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14);
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            border-color: rgba(232, 201, 107, 0.5);
+        }
+
+        /* ===== گریدها ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .stat strong {
+            font-size: 28px;
+            color: #e8c96b;
+            font-weight: 900;
+        }
+        .stat span {
+            display: block;
+            color: #b7cfc6;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .feature {
+            min-height: 145px;
+        }
+        .feature .ico {
+            font-size: 30px;
+            color: #e8c96b;
+            margin-bottom: 12px;
+        }
+        .feature h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #f7f4e9;
+        }
+        .feature p {
+            margin: 0;
+            color: #b7cfc6;
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        /* ===== گالری ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1.35fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        .gallery-card {
+            overflow: hidden;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.035);
+            transition: transform 0.35s;
+        }
+
+        .gallery-card:first-child img {
+            height: 300px;
+        }
+
+        .gallery-body {
+            padding: 13px 15px;
+        }
+
+        .gallery-body b {
+            display: block;
+            color: #e8c96b;
+            font-size: 13px;
+        }
+        .gallery-body small {
+            display: block;
+            color: #b7cfc6;
+            font-size: 11px;
+            margin-top: 5px;
+            line-height: 1.7;
+        }
+
+        /* ===== لیدرشیپ ===== */
+        .leadership-photo {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .leadership-photo video {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 1px solid rgba(232, 201, 107, 0.28);
+            background: #000;
+        }
+
+        .leadership-photo h2 {
+            color: #f7f4e9;
+            font-weight: 800;
+        }
+
+        .leadership-photo h3 {
+            color: #e8c96b;
+            font-weight: 700;
+        }
+
+        /* ===== رویدادها ===== */
+        .events {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .event {
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .eventtop {
+            height: 100px;
+            background: linear-gradient(135deg, #0a5b47, #052e27);
+            display: grid;
+            place-items: center;
+            font-size: 42px;
+            color: #e8c96b;
+        }
+
+        .eventbody {
+            padding: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            color: #0d3b30;
+            background: #e8c96b;
+            font-size: 10px;
+            font-weight: 900;
+            border-radius: 20px;
+            padding: 4px 8px;
+        }
+
+        .event h3 {
+            font-size: 15px;
+            margin: 10px 0 6px;
+            font-weight: 700;
+            color: #f7f4e9;
+        }
+        .event p {
+            font-size: 11px;
+            color: #b7cfc6;
+            line-height: 1.8;
+        }
+
+        .event .top {
+            position: static;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(232, 201, 107, 0.3);
+            color: #f7f4e9;
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .event .top:hover {
+            background: rgba(232, 201, 107, 0.2);
+        }
+
+        /* ===== تالار افتخارات ===== */
+        .hall {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .person {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            border: 2px solid #e8c96b;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #173f36, #0b5a46);
+            font-size: 25px;
+        }
+
+        .person b {
+            font-size: 13px;
+            color: #f7f4e9;
+        }
+        .person small {
+            display: block;
+            color: #b7cfc6;
+            margin-top: 5px;
+            font-size: 11px;
+        }
+
+        /* ===== دمو ===== */
+        .demo {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 22px;
+            border: 1px solid rgba(232, 201, 107, 0.28);
+            background: linear-gradient(135deg, rgba(232, 201, 107, 0.1), rgba(255, 255, 255, 0.04));
+            display: none;
+        }
+
+        .demo.show {
+            display: block;
+        }
+
+        .demo h3 {
+            margin-top: 0;
+            color: #e8c96b;
+            font-weight: 800;
+        }
+
+        .demoStage {
+            min-height: 220px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+
+        .demoStage .big {
+            font-size: 42px;
+            color: #e8c96b;
+            font-weight: 900;
+        }
+
+        .demoStage h2 {
+            font-size: 24px;
+            margin: 10px 0;
+            color: #f7f4e9;
+        }
+
+        .demo .top {
+            position: static;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(232, 201, 107, 0.3);
+            color: #f7f4e9;
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 600;
+        }
+
+        .demo .top:hover {
+            background: rgba(232, 201, 107, 0.2);
+        }
+
+        .demo .primary {
+            background: linear-gradient(135deg, #f1d47a, #caa84a);
+            color: #12382f !important;
+            border: 0 !important;
+            font-weight: 900;
+        }
+
+        /* ===== نویگیشن ===== */
+        .bottom {
+            position: fixed;
+            z-index: 20;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(3, 31, 26, 0.94);
+            backdrop-filter: blur(18px);
+            border-top: 1px solid rgba(232, 201, 107, 0.28);
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            padding: 8px max(8px, calc((100vw - 760px) / 2));
+            padding-bottom: calc(8px + env(safe-area-inset-bottom));
+        }
+
+        .nav {
+            flex: 1;
+            max-width: 130px;
+            background: none;
+            border: 0;
+            color: #9db8ae;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 10px;
+            padding: 6px 4px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        .nav.active {
+            color: #e8c96b;
+            background: rgba(232, 201, 107, 0.08);
+        }
+
+        .nav span {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        /* ===== ویوها ===== */
+        .view {
+            display: none;
+        }
+        .view.active {
+            display: block;
+        }
+
+        /* ===== مودال ===== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            place-items: center;
+            z-index: 40;
+            padding: 18px;
+        }
+
+        .modal.open {
+            display: grid;
+        }
+
+        .modalbox {
+            max-width: 560px;
+            width: 100%;
+            background: #073a30;
+            border: 1px solid #e8c96b;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        }
+
+        .modalbox h2 {
+            margin-top: 0;
+            color: #e8c96b;
+            font-weight: 800;
+        }
+
+        .modalbox p {
+            color: #d7e6df;
+        }
+
+        .close {
+            float: left;
+            background: transparent;
+            border: 1px solid rgba(232, 201, 107, 0.3);
+            color: #f7f4e9;
+            padding: 6px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .close:hover {
+            background: rgba(232, 201, 107, 0.15);
+        }
+
+        .qr {
+            width: 190px;
+            height: 190px;
+            margin: 15px auto;
+            background: repeating-linear-gradient(45deg, #073a30 0 5px, #f5f1df 5px 10px);
+            border: 12px solid #fff;
+            display: grid;
+            place-items: center;
+            color: #073a30;
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        .modalbox .credit {
+            margin-top: 10px;
+        }
+
+        .modalbox .top {
+            position: static;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* ===== فوتو مودال ===== */
+        .photo-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            display: none;
+            place-items: center;
+            z-index: 60;
+            padding: 18px;
+        }
+
+        .photo-modal.open {
+            display: grid;
+        }
+
+        .photo-modal img {
+            max-width: min(100%, 1050px);
+            max-height: 88vh;
+            border-radius: 18px;
+            border: 1px solid #e8c96b;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        }
+
+        .photo-close {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(232, 201, 107, 0.3);
+            color: #f7f4e9;
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 600;
+        }
+
+        .photo-close:hover {
+            background: rgba(232, 201, 107, 0.2);
+        }
+
+        /* ===== متفرقه ===== */
+        .notice {
+            color: #b7cfc6;
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .toast {
+            position: fixed;
+            top: 74px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            opacity: 0;
+            pointer-events: none;
+            background: #f1d47a;
+            color: #12382f;
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            z-index: 50;
+            transition: 0.3s;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .toast.on {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== ریسپانسیو ===== */
+        @media (max-width: 850px) {
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+            .gallery-card:first-child {
+                grid-column: 1 / -1;
+            }
+            .leadership-photo {
+                grid-template-columns: 1fr;
+            }
+            .leadership-photo video {
+                height: 280px;
+            }
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features,
+            .events {
+                grid-template-columns: 1fr;
+            }
+            .hall {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero {
+                padding: 28px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            .gallery-card:first-child {
+                grid-column: auto;
+            }
+            .gallery-card img,
+            .gallery-card:first-child img {
+                height: 260px;
+            }
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero h1 {
+                font-size: 34px;
+            }
+            .hero p {
+                font-size: 13px;
+            }
+            .hall {
+                grid-template-columns: 1fr;
+            }
+            .brand b {
+                font-size: 15px;
+            }
+            .top {
+                padding: 10px 12px;
+            }
+            .leadership-photo video {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="toast" id="toast"></div>
+
+    <div class="app">
+        <!-- ===== هدر ===== -->
+        <header class="top">
+            <div class="brand">
+                <div class="mark">۞</div>
+                <div>
+                    <b>پل ثقلین</b>
+                    <small>بستر دیجیتال جشنواره قرآن، عترت و نماز</small>
+                </div>
+            </div>
+            <button onclick="openInstall()">نصب / معرفی</button>
+        </header>
+
+        <main>
+            <!-- ===== صفحه اصلی ===== -->
+            <section id="home" class="view active">
+                <div class="hero">
+                    <div class="eyebrow">معرفی اپلیکیشن «پل ثقلین»</div>
+                    <h1>طلوع عصر جدید<br>در آموزش قرآنی</h1>
+                    <p>یک پل دیجیتال برای پیوند دانش‌آموزان نخبه قرآنی، مربیان، مدیران و خانواده بزرگ آموزش و پرورش ناحیه یک اهواز؛ با تمرکز بر قرآن، عترت و نماز.</p>
+                    <div class="actions">
+                        <button class="top primary" onclick="startDemo()">▶ شروع معرفی اپلیکیشن</button>
+                        <button class="top" onclick="go('events')">مشاهده رویدادها</button>
+                    </div>
+                    <div class="credit">
+                        <span>طراحی و رونمایی:</span>
+                        <b>سحر مهدیان</b>
+                        <span>کارشناس فناوری اطلاعات ناحیه یک اهواز</span>
+                        <span class="date">۲۲ مرداد ۱۴۰۵</span>
+                    </div>
+                </div>
+
+                <!-- ===== گالری ===== -->
+                <div class="section">
+                    <h2>تصاویر ویژه رونمایی</h2>
+                    <div class="gallery">
+                        <div class="card gallery-card" onclick="openPhoto('leadership.jpg')">
+                            <img src="leadership.jpg" alt="جناب آقای جاسم صاکی" loading="eager">
+                            <div class="gallery-body">
+                                <b>ریاست محترم جناب آقای جاسم صاکی</b>
+                                <small>مدیریت آموزش و پرورش ناحیه یک اهواز</small>
+                            </div>
+                        </div>
+                        <div class="card gallery-card" onclick="openPhoto('festival.jpg')">
+                            <img src="festival.jpg" alt="بیست و یکمین جشنواره قرآن، عترت و نماز">
+                            <div class="gallery-body">
+                                <b>بیست و یکمین جشنواره</b>
+                                <small>جشنواره قرآن، عترت و نماز استان خوزستان</small>
+                            </div>
+                        </div>
+                        <div class="card gallery-card" onclick="openPhoto('management.jpg')">
+                            <img src="management.jpg" alt="مدیریت با نگاه آینده">
+                            <div class="gallery-body">
+                                <b>مدیریت با نگاه آینده</b>
+                                <small>تمرکز بر توسعه، تصمیم‌گیری مؤثر و هدایت مسئولانه</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== لیدرشیپ - بخش ویدیو ===== -->
+                <div class="section">
+                    <div class="card leadership-photo">
+                        <video controls autoplay muted loop playsinline>
+                            <source src="leadership.mp4" type="video/mp4">
+                            مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+                        </video>
+                        <div>
+                            <div class="eyebrow">محور مدیریتی اپلیکیشن</div>
+                            <h2>تقدیم ویژه به ریاست محترم</h2>
+                            <h3>جناب آقای جاسم صاکی</h3>
+                            <p class="notice">این نسخه از «پل ثقلین» با تمرکز بر مدیریت و حمایت راهبردی ریاست محترم آموزش و پرورش ناحیه یک اهواز ارائه می‌شود.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== داشبورد ===== -->
+                <div class="section">
+                    <h2>داشبورد جشنواره</h2>
+                    <div class="grid">
+                        <div class="card stat"><strong>۲۱</strong><span>دوره / جشنواره</span></div>
+                        <div class="card stat"><strong>۳</strong><span>محور قرآن، عترت، نماز</span></div>
+                        <div class="card stat"><strong>۳۶۵</strong><span>ارتباط و دسترسی</span></div>
+                        <div class="card stat"><strong>∞</strong><span>میراث ماندگار</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== سه ستون ===== -->
+                <div class="section">
+                    <h2>سه ستون اصلی</h2>
+                    <div class="features">
+                        <div class="card feature">
+                            <div class="ico">◈</div>
+                            <h3>ارتباط با مربیان</h3>
+                            <p>تعامل مستقیم، دریافت بازخورد و هدایت آموزشی برای دانش‌آموزان.</p>
+                        </div>
+                        <div class="card feature">
+                            <div class="ico">✦</div>
+                            <h3>بارگذاری آثار</h3>
+                            <p>بستر یکپارچه برای دریافت و سامان‌دهی آثار دانش‌آموزان و نخبگان قرآنی.</p>
+                        </div>
+                        <div class="card feature">
+                            <div class="ico">♛</div>
+                            <h3>تالار افتخارات</h3>
+                            <p>ثبت دائمی دستاوردها و معرفی برگزیدگان به تفکیک رشته و شهرستان.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== رویدادها ===== -->
+            <section id="events" class="view">
+                <div class="section">
+                    <h2>رویدادها و مسیر جشنواره</h2>
+                    <div class="events">
+                        <article class="card event">
+                            <div class="eventtop">☼</div>
+                            <div class="eventbody">
+                                <span class="tag">قرآن</span>
+                                <h3>آثار نخبگان قرآنی</h3>
+                                <p>فضایی برای ارائه، آرشیو و دیده‌شدن آثار و استعدادهای برتر.</p>
+                                <button class="top" onclick="toast('بخش آثار در نسخه نمایشی آماده است')">ورود به آثار</button>
+                            </div>
+                        </article>
+                        <article class="card event">
+                            <div class="eventtop">☾</div>
+                            <div class="eventbody">
+                                <span class="tag">عترت</span>
+                                <h3>شبکه مربیان و مدیران</h3>
+                                <p>ارتباط میان مربیان دلسوز، مدیران و دانش‌آموزان در یک مسیر واحد.</p>
+                                <button class="top" onclick="toast('ارتباط شبکه‌ای فعال شد')">مشاهده شبکه</button>
+                            </div>
+                        </article>
+                        <article class="card event">
+                            <div class="eventtop">✧</div>
+                            <div class="eventbody">
+                                <span class="tag">نماز</span>
+                                <h3>ویترین افتخارات</h3>
+                                <p>معرفی برگزیدگان و ایجاد انگیزه برای سایر دانش‌آموزان.</p>
+                                <button class="top" onclick="go('honors')">تالار افتخارات</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== افتخارات ===== -->
+            <section id="honors" class="view">
+                <div class="section">
+                    <h2>تالار افتخارات</h2>
+                    <div class="card" style="margin-bottom:14px;">
+                        <b style="color:#e8c96b;">ثبت دائمی دستاوردها</b>
+                        <p class="notice">اینجا می‌توان برگزیدگان هر دوره را به تفکیک رشته و شهرستان معرفی کرد. این نسخه نمایشی چند نمونه داده برای رونمایی دارد.</p>
+                    </div>
+                    <div class="hall">
+                        <div class="card person">
+                            <div class="avatar">🥇</div>
+                            <b>نخبه قرآنی</b>
+                            <small>رشته قرائت</small>
+                        </div>
+                        <div class="card person">
+                            <div class="avatar">🥈</div>
+                            <b>برگزیده عترت</b>
+                            <small>رشته معارف</small>
+                        </div>
+                        <div class="card person">
+                            <div class="avatar">🥉</div>
+                            <b>افتخار نماز</b>
+                            <small>رشته اذان</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== شبکه ===== -->
+            <section id="network" class="view">
+                <div class="section">
+                    <h2>شبکه ارتباطی</h2>
+                    <div class="features">
+                        <div class="card feature">
+                            <div class="ico">👨‍🏫</div>
+                            <h3>مربیان</h3>
+                            <p>دریافت و ارائه بازخورد، هدایت تحصیلی و تربیتی.</p>
+                        </div>
+                        <div class="card feature">
+                            <div class="ico">👨‍🎓</div>
+                            <h3>دانش‌آموزان</h3>
+                            <p>دسترسی به فرصت‌ها، رویدادها و مسیر رشد.</p>
+                        </div>
+                        <div class="card feature">
+                            <div class="ico">🏫</div>
+                            <h3>مدیران</h3>
+                            <p>مدیریت ارتباطات و مشارکت در برگزاری جشنواره.</p>
+                        </div>
+                    </div>
+                    <div class="card" style="margin-top:14px;">
+                        <h3 style="color:#e8c96b;">پیام شبکه</h3>
+                        <p class="notice">«یک پل تنها دو نقطه را به هم متصل نمی‌کند؛ بلکه مسافران خود را به سطحی بالاتر ارتقا می‌دهد.»</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== آرشیو ===== -->
+            <section id="archive" class="view">
+                <div class="section">
+                    <h2>آرشیو و میراث دیجیتال</h2>
+                    <div class="features">
+                        <div class="card feature">
+                            <div class="ico">🗂</div>
+                            <h3>آثار جشنواره</h3>
+                            <p>آرشیو منظم آثار، پژوهش‌ها و تولیدات دانش‌آموزی.</p>
+                        </div>
+                        <div class="card feature">
+                            <div class="ico">🏆</div>
+                            <h3>برگزیدگان</h3>
+                            <p>نگهداری سوابق و دستاوردهای ماندگار نسل‌های مختلف.</p>
+                        </div>
+                        <div class="card feature">
+                            <div class="ico">📜</div>
+                            <h3>رویدادها</h3>
+                            <p>ثبت تاریخچه جشنواره‌ها و مسیر تحول تجربه جشنواره.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== دمو ===== -->
+            <div class="demo" id="demo">
+                <h3>🎬 حالت ارائه رسمی</h3>
+                <div class="demoStage" id="demoStage"></div>
+                <div class="actions">
+                    <button class="top primary" onclick="nextDemo()">مرحله بعد ←</button>
+                    <button class="top" onclick="endDemo()">پایان معرفی</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- ===== فوتر ===== -->
+        <div class="section" style="margin-top:28px;margin-bottom:70px;">
+            <div class="card" style="text-align:center;padding:20px;">
+                <div style="color:#e8c96b;font-size:13px;font-weight:900;">اپلیکیشن «پل ثقلین»</div>
+                <div style="margin-top:8px;font-size:14px;font-weight:800;color:#f7f4e9;">طراحی و رونمایی توسط سحر مهدیان</div>
+                <div style="margin-top:5px;color:#b7cfc6;font-size:11px;">کارشناس فناوری اطلاعات ناحیه یک اهواز</div>
+                <div style="margin-top:7px;color:#e8c96b;font-size:12px;font-weight:800;">۲۲ مرداد ۱۴۰۵</div>
+                <div style="margin-top:13px;padding-top:12px;border-top:1px solid rgba(226,190,90,0.2);font-size:12px;font-weight:900;color:#f7f4e9;">با تمرکز بر ریاست محترم جناب آقای جاسم صاکی</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== نویگیشن ===== -->
+    <nav class="bottom">
+        <button class="nav active" data-view="home" onclick="go('home')"><span>⌂</span>خانه</button>
+        <button class="nav" data-view="events" onclick="go('events')"><span>✦</span>رویدادها</button>
+        <button class="nav" data-view="honors" onclick="go('honors')"><span>🏆</span>افتخارات</button>
+        <button class="nav" data-view="network" onclick="go('network')"><span>♧</span>شبکه</button>
+        <button class="nav" data-view="archive" onclick="go('archive')"><span>▤</span>آرشیو</button>
+    </nav>
+
+    <!-- ===== مودال نصب ===== -->
+    <div class="modal" id="install">
+        <div class="modalbox">
+            <button class="close" onclick="closeInstall()">✕ بستن</button>
+            <h2>پل ثقلین</h2>
+            <p>نسخه نمایشی آماده رونمایی است. برای ارائه روی نمایشگر بزرگ، مرورگر را تمام‌صفحه کنید.</p>
+            <div class="credit">
+                <span>طراحی و رونمایی توسط</span>
+                <b>سحر مهدیان</b>
+                <span>کارشناس فناوری اطلاعات ناحیه یک اهواز</span>
+                <span class="date">۲۲ مرداد ۱۴۰۵</span>
+            </div>
+            <div class="qr">پل<br>ثقلین</div>
+            <p class="notice">توجه: فایل ارائه‌شده یک نمونه تعاملی آفلاین است.</p>
+            <button class="top primary" onclick="document.documentElement.requestFullscreen?.();closeInstall();toast('حالت تمام‌صفحه فعال شد')">تمام‌صفحه برای رونمایی</button>
+        </div>
+    </div>
+
+    <!-- ===== مودال تصویر ===== -->
+    <div class="photo-modal" id="photoModal" onclick="closePhoto()">
+        <button class="photo-close" onclick="event.stopPropagation();closePhoto()">✕ بستن</button>
+        <img id="photoPreview" src="" alt="تصویر ویژه رونمایی" onclick="event.stopPropagation()">
+    </div>
+
+    <script>
+        // ===== توابع اصلی =====
+        const views = ['home', 'events', 'honors', 'network', 'archive'];
+
+        function go(id) {
+            views.forEach(v => {
+                document.getElementById(v).classList.toggle('active', v === id);
+            });
+            document.querySelectorAll('.nav').forEach(n => {
+                n.classList.toggle('active', n.dataset.view === id);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toast(t) {
+            const x = document.getElementById('toast');
+            x.textContent = t;
+            x.classList.add('on');
+            clearTimeout(window.tt);
+            window.tt = setTimeout(() => x.classList.remove('on'), 2200);
+        }
+
+        // ===== مودال نصب =====
+        function openInstall() {
+            document.getElementById('install').classList.add('open');
+        }
+
+        function closeInstall() {
+            document.getElementById('install').classList.remove('open');
+        }
+
+        // ===== دمو =====
+        let di = 0;
+        const demos = [
+            ['01', 'پل ثقلین', 'یک پل دیجیتال برای پیوند قرآن، عترت و نماز'],
+            ['02', 'ارتباط', 'اتصال دانش‌آموزان، مربیان و مدیران در یک شبکه واحد'],
+            ['03', 'ویترین افتخارات', 'معرفی برگزیدگان و ثبت دائمی دستاوردها'],
+            ['04', 'میراث دیجیتال', 'آرشیو آثار و تجربه جشنواره برای نسل‌های آینده'],
+            ['05', 'جمع‌بندی', 'از یک رویداد محدود به یک تجربه ماندگار دیجیتال'],
+            ['06', 'طراح، رونمایی‌کننده و محور مدیریتی', 'سحر مهدیان | کارشناس فناوری اطلاعات ناحیه یک اهواز | ۲۲ مرداد ۱۴۰۵ | با تمرکز بر ریاست محترم جناب آقای جاسم صاکی']
+        ];
+
+        function startDemo() {
+            document.getElementById('demo').classList.add('show');
+            di = 0;
+            renderDemo();
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderDemo() {
+            const d = demos[di];
+            document.getElementById('demoStage').innerHTML = `
+                <div>
+                    <div class="big">${d[0]}</div>
+                    <h2>${d[1]}</h2>
+                    <p class="notice">${d[2]}</p>
+                </div>
+            `;
+        }
+
+        function nextDemo() {
+            di = (di + 1) % demos.length;
+            renderDemo();
+            if (di === 0) toast('معرفی دوباره از ابتدا شروع شد');
+        }
+
+        function endDemo() {
+            document.getElementById('demo').classList.remove('show');
+            go('home');
+        }
+
+        // ===== مودال تصویر =====
+        function openPhoto(src) {
+            document.getElementById('photoPreview').src = src;
+            document.getElementById('photoModal').classList.add('open');
+        }
+
+        function closePhoto() {
+            document.getElementById('photoModal').classList.remove('open');
+        }
+
+        // ===== کیبورد =====
+        window.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeInstall();
+                closePhoto();
+            }
+            if (e.key === 'ArrowLeft') nextDemo();
+        });
+
+        // ===== سرویس ورکر =====
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
+    </script>
+</body>
+</html>
