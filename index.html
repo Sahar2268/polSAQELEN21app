@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پل ثقلین | طلوع عصر جدید</title>
     <style>
-        /* ===== فونت تیتر ===== */
+        /* ===== فونت تیتر و بینازنین ===== */
         @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
 
         * {
@@ -20,6 +20,7 @@
             color: #f7f4e9;
             min-height: 100vh;
             padding-bottom: 90px;
+            transition: all 0.2s ease;
         }
 
         .app {
@@ -41,6 +42,8 @@
             align-items: center;
             justify-content: space-between;
             border-radius: 0 0 18px 18px;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .brand {
@@ -72,6 +75,56 @@
             color: #b7cfc6;
             font-size: 10px;
             font-weight: 400;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 4px;
+            background: rgba(255,255,255,0.06);
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid rgba(232,201,107,0.2);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #b7cfc6;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+            transition: 0.2s;
+        }
+
+        .lang-btn.active {
+            background: rgba(232,201,107,0.2);
+            color: #e8c96b;
+        }
+
+        .lang-btn:hover {
+            background: rgba(232,201,107,0.1);
+        }
+
+        .datetime {
+            font-size: 11px;
+            color: #b7cfc6;
+            background: rgba(0,0,0,0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(232,201,107,0.15);
+            white-space: nowrap;
+            font-weight: 600;
+            letter-spacing: 0.3px;
         }
 
         .top button,
@@ -134,11 +187,15 @@
         .hero h1 {
             font-size: clamp(30px, 6vw, 64px);
             line-height: 1.2;
-            margin: 10px 0;
+            margin: 10px 0 5px;
             font-weight: 900;
             position: relative;
             z-index: 1;
             color: #f7f4e9;
+        }
+
+        .hero h1 span {
+            display: inline-block;
         }
 
         .hero p {
@@ -440,6 +497,66 @@
             font-size: 11px;
         }
 
+        /* ===== نظر سنجی / ارسال نظر ===== */
+        .comment-section {
+            margin-top: 28px;
+        }
+        .comment-section textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(232,201,107,0.25);
+            color: #f7f4e9;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            transition: 0.2s;
+        }
+        .comment-section textarea:focus {
+            outline: none;
+            border-color: #e8c96b;
+            background: rgba(255,255,255,0.08);
+        }
+        .comment-section textarea::placeholder {
+            color: #9db8ae;
+        }
+        .comment-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .comment-list {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .comment-item {
+            background: rgba(255,255,255,0.05);
+            padding: 12px 14px;
+            border-radius: 14px;
+            border-right: 3px solid #e8c96b;
+            font-size: 13px;
+            color: #d7e6df;
+            line-height: 1.7;
+        }
+        .comment-item .meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #b7cfc6;
+            margin-top: 6px;
+            border-top: 1px solid rgba(232,201,107,0.1);
+            padding-top: 6px;
+        }
+        .comment-item .meta span {
+            font-weight: 600;
+            color: #e8c96b;
+        }
+
         /* ===== دمو ===== */
         .demo {
             margin-top: 25px;
@@ -723,6 +840,14 @@
             .hero {
                 padding: 28px 20px;
             }
+            .top {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .top-actions {
+                justify-content: space-between;
+                width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -757,6 +882,14 @@
             .leadership-photo video {
                 height: 220px;
             }
+            .top-actions {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+            .datetime {
+                font-size: 10px;
+                padding: 2px 8px;
+            }
         }
     </style>
 </head>
@@ -764,62 +897,54 @@
     <div class="toast" id="toast"></div>
 
     <div class="app">
-        <!-- ===== هدر ===== -->
+        <!-- ===== هدر با تاریخ/ساعت و دکمه‌های زبان ===== -->
         <header class="top">
             <div class="brand">
                 <div class="mark">۞</div>
                 <div>
-                    <b>پل ثقلین</b>
-                    <small>بستر دیجیتال جشنواره قرآن، عترت و نماز</small>
+                    <b id="brandTitle">پل ثقلین</b>
+                    <small id="brandSub">بستر دیجیتال جشنواره قرآن، عترت و نماز</small>
                 </div>
             </div>
-            <button onclick="openInstall()">نصب / معرفی</button>
+            <div class="top-actions">
+                <div class="datetime" id="datetimeDisplay"></div>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" data-lang="fa" onclick="setLang('fa')">فا</button>
+                    <button class="lang-btn" data-lang="ar" onclick="setLang('ar')">ع</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLang('en')">En</button>
+                </div>
+                <button onclick="openInstall()" id="installBtn">نصب / معرفی</button>
+            </div>
         </header>
 
         <main>
             <!-- ===== صفحه اصلی ===== -->
             <section id="home" class="view active">
                 <div class="hero">
-                    <div class="eyebrow">معرفی اپلیکیشن «پل ثقلین»</div>
-                    <h1>طلوع عصر جدید<br>در آموزش قرآنی</h1>
-                    <p>یک پل دیجیتال برای پیوند دانش‌آموزان نخبه قرآنی، مربیان، مدیران و خانواده بزرگ آموزش و پرورش ناحیه یک اهواز؛ با تمرکز بر قرآن، عترت و نماز.</p>
+                    <div class="eyebrow" id="heroEyebrow">معرفی اپلیکیشن «پل ثقلین»</div>
+                    <h1 id="heroTitle"><span>طلوع عصر جدید</span> <span>در آموزش قرآنی</span></h1>
+                    <p id="heroDesc">یک پل دیجیتال برای پیوند دانش‌آموزان نخبه قرآنی، مربیان، مدیران و خانواده بزرگ آموزش و پرورش ناحیه یک اهواز؛ با تمرکز بر قرآن، عترت و نماز.</p>
                     <div class="actions">
-                        <button class="top primary" onclick="startDemo()">▶ شروع معرفی اپلیکیشن</button>
-                        <button class="top" onclick="go('events')">مشاهده رویدادها</button>
+                        <button class="top primary" onclick="startDemo()" id="demoBtn">▶ شروع معرفی اپلیکیشن</button>
+                        <button class="top" onclick="go('events')" id="eventsBtn">مشاهده رویدادها</button>
                     </div>
                     <div class="credit">
-                        <span>طراحی و رونمایی:</span>
+                        <span id="creditLabel">طراحی و رونمایی:</span>
                         <b>سحر مهدیان</b>
-                        <span>کارشناس فناوری اطلاعات ناحیه یک اهواز</span>
+                        <span id="creditRole">کارشناس فناوری اطلاعات ناحیه یک اهواز</span>
                         <span class="date">۲۲ مرداد ۱۴۰۵</span>
                     </div>
                 </div>
 
                 <!-- ===== گالری ===== -->
                 <div class="section">
-                    <h2>تصاویر ویژه رونمایی</h2>
-                    <div class="gallery">
-                        <div class="card gallery-card" onclick="openPhoto('leadership.jpg')">
-                            <img src="leadership.jpg" alt="جناب آقای جاسم صاکی" loading="eager">
-                            <div class="gallery-body">
-                                <b>ریاست محترم جناب آقای جاسم صاکی</b>
-                                <small>مدیریت آموزش و پرورش ناحیه یک اهواز</small>
-                            </div>
-                        </div>
-                        <div class="card gallery-card" onclick="openPhoto('festival.jpg')">
-                            <img src="festival.jpg" alt="بیست و یکمین جشنواره قرآن، عترت و نماز">
-                            <div class="gallery-body">
-                                <b>بیست و یکمین جشنواره</b>
-                                <small>جشنواره قرآن، عترت و نماز استان خوزستان</small>
-                            </div>
-                        </div>
-                        <div class="card gallery-card" onclick="openPhoto('management.jpg')">
-                            <img src="management.jpg" alt="مدیریت با نگاه آینده">
-                            <div class="gallery-body">
-                                <b>مدیریت با نگاه آینده</b>
-                                <small>تمرکز بر توسعه، تصمیم‌گیری مؤثر و هدایت مسئولانه</small>
-                            </div>
-                        </div>
+                    <h2 id="galleryTitle">تصاویر ویژه رونمایی</h2>
+                    <div class="gallery" id="galleryContainer">
+                        <!-- گالری توسط JS از localStorage پر می‌شود -->
+                    </div>
+                    <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="top" onclick="openGalleryManager()" id="galleryManageBtn">➕ مدیریت گالری (مدیر)</button>
+                        <button class="top" onclick="resetGallery()" id="galleryResetBtn" style="border-color: rgba(255,80,80,0.4);">↺ بازنشانی به پیش‌فرض</button>
                     </div>
                 </div>
 
@@ -831,43 +956,58 @@
                             مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
                         </video>
                         <div>
-                            <div class="eyebrow">محور مدیریتی اپلیکیشن</div>
-                            <h2>تقدیم ویژه به ریاست محترم</h2>
+                            <div class="eyebrow" id="leadershipEyebrow">محور مدیریتی اپلیکیشن</div>
+                            <h2 id="leadershipTitle">تقدیم ویژه به ریاست محترم</h2>
                             <h3>جناب آقای جاسم صاکی</h3>
-                            <p class="notice">این نسخه از «پل ثقلین» با تمرکز بر مدیریت و حمایت راهبردی ریاست محترم آموزش و پرورش ناحیه یک اهواز ارائه می‌شود.</p>
+                            <p class="notice" id="leadershipDesc">این نسخه از «پل ثقلین» با تمرکز بر مدیریت و حمایت راهبردی ریاست محترم آموزش و پرورش ناحیه یک اهواز ارائه می‌شود.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- ===== داشبورد ===== -->
                 <div class="section">
-                    <h2>داشبورد جشنواره</h2>
+                    <h2 id="dashboardTitle">داشبورد جشنواره</h2>
                     <div class="grid">
-                        <div class="card stat"><strong>۲۱</strong><span>دوره / جشنواره</span></div>
-                        <div class="card stat"><strong>۳</strong><span>محور قرآن، عترت، نماز</span></div>
-                        <div class="card stat"><strong>۳۶۵</strong><span>ارتباط و دسترسی</span></div>
-                        <div class="card stat"><strong>∞</strong><span>میراث ماندگار</span></div>
+                        <div class="card stat"><strong>۲۱</strong><span id="stat1">دوره / جشنواره</span></div>
+                        <div class="card stat"><strong>۳</strong><span id="stat2">محور قرآن، عترت، نماز</span></div>
+                        <div class="card stat"><strong>۳۶۵</strong><span id="stat3">ارتباط و دسترسی</span></div>
+                        <div class="card stat"><strong>∞</strong><span id="stat4">میراث ماندگار</span></div>
                     </div>
                 </div>
 
                 <!-- ===== سه ستون ===== -->
                 <div class="section">
-                    <h2>سه ستون اصلی</h2>
+                    <h2 id="featuresTitle">سه ستون اصلی</h2>
                     <div class="features">
                         <div class="card feature">
                             <div class="ico">◈</div>
-                            <h3>ارتباط با مربیان</h3>
-                            <p>تعامل مستقیم، دریافت بازخورد و هدایت آموزشی برای دانش‌آموزان.</p>
+                            <h3 id="f1Title">ارتباط با مربیان</h3>
+                            <p id="f1Desc">تعامل مستقیم، دریافت بازخورد و هدایت آموزشی برای دانش‌آموزان.</p>
                         </div>
                         <div class="card feature">
                             <div class="ico">✦</div>
-                            <h3>بارگذاری آثار</h3>
-                            <p>بستر یکپارچه برای دریافت و سامان‌دهی آثار دانش‌آموزان و نخبگان قرآنی.</p>
+                            <h3 id="f2Title">بارگذاری آثار</h3>
+                            <p id="f2Desc">بستر یکپارچه برای دریافت و سامان‌دهی آثار دانش‌آموزان و نخبگان قرآنی.</p>
                         </div>
                         <div class="card feature">
                             <div class="ico">♛</div>
-                            <h3>تالار افتخارات</h3>
-                            <p>ثبت دائمی دستاوردها و معرفی برگزیدگان به تفکیک رشته و شهرستان.</p>
+                            <h3 id="f3Title">تالار افتخارات</h3>
+                            <p id="f3Desc">ثبت دائمی دستاوردها و معرفی برگزیدگان به تفکیک رشته و شهرستان.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== بخش ارسال نظر ===== -->
+                <div class="section comment-section">
+                    <h2 id="commentTitle">📝 نظرات و پیشنهادات</h2>
+                    <div class="card">
+                        <textarea id="commentInput" placeholder="نظر، پیشنهاد یا انتقاد خود را با ما در میان بگذارید..." rows="2"></textarea>
+                        <div class="comment-actions">
+                            <button class="top primary" onclick="submitComment()" id="submitCommentBtn">ارسال نظر</button>
+                            <button class="top" onclick="clearComments()" id="clearCommentsBtn" style="border-color: rgba(255,80,80,0.3);">پاک کردن همه نظرات</button>
+                        </div>
+                        <div class="comment-list" id="commentList">
+                            <!-- نظرات توسط JS نمایش داده می‌شوند -->
                         </div>
                     </div>
                 </div>
@@ -876,33 +1016,33 @@
             <!-- ===== رویدادها ===== -->
             <section id="events" class="view">
                 <div class="section">
-                    <h2>رویدادها و مسیر جشنواره</h2>
+                    <h2 id="eventsPageTitle">رویدادها و مسیر جشنواره</h2>
                     <div class="events">
                         <article class="card event">
                             <div class="eventtop">☼</div>
                             <div class="eventbody">
-                                <span class="tag">قرآن</span>
-                                <h3>آثار نخبگان قرآنی</h3>
-                                <p>فضایی برای ارائه، آرشیو و دیده‌شدن آثار و استعدادهای برتر.</p>
-                                <button class="top" onclick="toast('بخش آثار در نسخه نمایشی آماده است')">ورود به آثار</button>
+                                <span class="tag" id="tag1">قرآن</span>
+                                <h3 id="e1Title">آثار نخبگان قرآنی</h3>
+                                <p id="e1Desc">فضایی برای ارائه، آرشیو و دیده‌شدن آثار و استعدادهای برتر.</p>
+                                <button class="top" onclick="toast('بخش آثار در نسخه نمایشی آماده است')" id="e1Btn">ورود به آثار</button>
                             </div>
                         </article>
                         <article class="card event">
                             <div class="eventtop">☾</div>
                             <div class="eventbody">
-                                <span class="tag">عترت</span>
-                                <h3>شبکه مربیان و مدیران</h3>
-                                <p>ارتباط میان مربیان دلسوز، مدیران و دانش‌آموزان در یک مسیر واحد.</p>
-                                <button class="top" onclick="toast('ارتباط شبکه‌ای فعال شد')">مشاهده شبکه</button>
+                                <span class="tag" id="tag2">عترت</span>
+                                <h3 id="e2Title">شبکه مربیان و مدیران</h3>
+                                <p id="e2Desc">ارتباط میان مربیان دلسوز، مدیران و دانش‌آموزان در یک مسیر واحد.</p>
+                                <button class="top" onclick="toast('ارتباط شبکه‌ای فعال شد')" id="e2Btn">مشاهده شبکه</button>
                             </div>
                         </article>
                         <article class="card event">
                             <div class="eventtop">✧</div>
                             <div class="eventbody">
-                                <span class="tag">نماز</span>
-                                <h3>ویترین افتخارات</h3>
-                                <p>معرفی برگزیدگان و ایجاد انگیزه برای سایر دانش‌آموزان.</p>
-                                <button class="top" onclick="go('honors')">تالار افتخارات</button>
+                                <span class="tag" id="tag3">نماز</span>
+                                <h3 id="e3Title">ویترین افتخارات</h3>
+                                <p id="e3Desc">معرفی برگزیدگان و ایجاد انگیزه برای سایر دانش‌آموزان.</p>
+                                <button class="top" onclick="go('honors')" id="e3Btn">تالار افتخارات</button>
                             </div>
                         </article>
                     </div>
@@ -912,26 +1052,26 @@
             <!-- ===== افتخارات ===== -->
             <section id="honors" class="view">
                 <div class="section">
-                    <h2>تالار افتخارات</h2>
+                    <h2 id="honorsTitle">تالار افتخارات</h2>
                     <div class="card" style="margin-bottom:14px;">
-                        <b style="color:#e8c96b;">ثبت دائمی دستاوردها</b>
-                        <p class="notice">اینجا می‌توان برگزیدگان هر دوره را به تفکیک رشته و شهرستان معرفی کرد. این نسخه نمایشی چند نمونه داده برای رونمایی دارد.</p>
+                        <b style="color:#e8c96b;" id="honorsSub">ثبت دائمی دستاوردها</b>
+                        <p class="notice" id="honorsDesc">اینجا می‌توان برگزیدگان هر دوره را به تفکیک رشته و شهرستان معرفی کرد. این نسخه نمایشی چند نمونه داده برای رونمایی دارد.</p>
                     </div>
                     <div class="hall">
                         <div class="card person">
                             <div class="avatar">🥇</div>
-                            <b>نخبه قرآنی</b>
-                            <small>رشته قرائت</small>
+                            <b id="h1Name">نخبه قرآنی</b>
+                            <small id="h1Field">رشته قرائت</small>
                         </div>
                         <div class="card person">
                             <div class="avatar">🥈</div>
-                            <b>برگزیده عترت</b>
-                            <small>رشته معارف</small>
+                            <b id="h2Name">برگزیده عترت</b>
+                            <small id="h2Field">رشته معارف</small>
                         </div>
                         <div class="card person">
                             <div class="avatar">🥉</div>
-                            <b>افتخار نماز</b>
-                            <small>رشته اذان</small>
+                            <b id="h3Name">افتخار نماز</b>
+                            <small id="h3Field">رشته اذان</small>
                         </div>
                     </div>
                 </div>
@@ -940,27 +1080,27 @@
             <!-- ===== شبکه ===== -->
             <section id="network" class="view">
                 <div class="section">
-                    <h2>شبکه ارتباطی</h2>
+                    <h2 id="networkTitle">شبکه ارتباطی</h2>
                     <div class="features">
                         <div class="card feature">
                             <div class="ico">👨‍🏫</div>
-                            <h3>مربیان</h3>
-                            <p>دریافت و ارائه بازخورد، هدایت تحصیلی و تربیتی.</p>
+                            <h3 id="n1Title">مربیان</h3>
+                            <p id="n1Desc">دریافت و ارائه بازخورد، هدایت تحصیلی و تربیتی.</p>
                         </div>
                         <div class="card feature">
                             <div class="ico">👨‍🎓</div>
-                            <h3>دانش‌آموزان</h3>
-                            <p>دسترسی به فرصت‌ها، رویدادها و مسیر رشد.</p>
+                            <h3 id="n2Title">دانش‌آموزان</h3>
+                            <p id="n2Desc">دسترسی به فرصت‌ها، رویدادها و مسیر رشد.</p>
                         </div>
                         <div class="card feature">
                             <div class="ico">🏫</div>
-                            <h3>مدیران</h3>
-                            <p>مدیریت ارتباطات و مشارکت در برگزاری جشنواره.</p>
+                            <h3 id="n3Title">مدیران</h3>
+                            <p id="n3Desc">مدیریت ارتباطات و مشارکت در برگزاری جشنواره.</p>
                         </div>
                     </div>
                     <div class="card" style="margin-top:14px;">
-                        <h3 style="color:#e8c96b;">پیام شبکه</h3>
-                        <p class="notice">«یک پل تنها دو نقطه را به هم متصل نمی‌کند؛ بلکه مسافران خود را به سطحی بالاتر ارتقا می‌دهد.»</p>
+                        <h3 style="color:#e8c96b;" id="networkMsgTitle">پیام شبکه</h3>
+                        <p class="notice" id="networkMsg">«یک پل تنها دو نقطه را به هم متصل نمی‌کند؛ بلکه مسافران خود را به سطحی بالاتر ارتقا می‌دهد.»</p>
                     </div>
                 </div>
             </section>
@@ -968,22 +1108,22 @@
             <!-- ===== آرشیو ===== -->
             <section id="archive" class="view">
                 <div class="section">
-                    <h2>آرشیو و میراث دیجیتال</h2>
+                    <h2 id="archiveTitle">آرشیو و میراث دیجیتال</h2>
                     <div class="features">
                         <div class="card feature">
                             <div class="ico">🗂</div>
-                            <h3>آثار جشنواره</h3>
-                            <p>آرشیو منظم آثار، پژوهش‌ها و تولیدات دانش‌آموزی.</p>
+                            <h3 id="a1Title">آثار جشنواره</h3>
+                            <p id="a1Desc">آرشیو منظم آثار، پژوهش‌ها و تولیدات دانش‌آموزی.</p>
                         </div>
                         <div class="card feature">
                             <div class="ico">🏆</div>
-                            <h3>برگزیدگان</h3>
-                            <p>نگهداری سوابق و دستاوردهای ماندگار نسل‌های مختلف.</p>
+                            <h3 id="a2Title">برگزیدگان</h3>
+                            <p id="a2Desc">نگهداری سوابق و دستاوردهای ماندگار نسل‌های مختلف.</p>
                         </div>
                         <div class="card feature">
                             <div class="ico">📜</div>
-                            <h3>رویدادها</h3>
-                            <p>ثبت تاریخچه جشنواره‌ها و مسیر تحول تجربه جشنواره.</p>
+                            <h3 id="a3Title">رویدادها</h3>
+                            <p id="a3Desc">ثبت تاریخچه جشنواره‌ها و مسیر تحول تجربه جشنواره.</p>
                         </div>
                     </div>
                 </div>
@@ -991,11 +1131,11 @@
 
             <!-- ===== دمو ===== -->
             <div class="demo" id="demo">
-                <h3>🎬 حالت ارائه رسمی</h3>
+                <h3 id="demoTitle">🎬 حالت ارائه رسمی</h3>
                 <div class="demoStage" id="demoStage"></div>
                 <div class="actions">
-                    <button class="top primary" onclick="nextDemo()">مرحله بعد ←</button>
-                    <button class="top" onclick="endDemo()">پایان معرفی</button>
+                    <button class="top primary" onclick="nextDemo()" id="demoNextBtn">مرحله بعد ←</button>
+                    <button class="top" onclick="endDemo()" id="demoEndBtn">پایان معرفی</button>
                 </div>
             </div>
         </main>
@@ -1003,39 +1143,55 @@
         <!-- ===== فوتر ===== -->
         <div class="section" style="margin-top:28px;margin-bottom:70px;">
             <div class="card" style="text-align:center;padding:20px;">
-                <div style="color:#e8c96b;font-size:13px;font-weight:900;">اپلیکیشن «پل ثقلین»</div>
-                <div style="margin-top:8px;font-size:14px;font-weight:800;color:#f7f4e9;">طراحی و رونمایی توسط سحر مهدیان</div>
-                <div style="margin-top:5px;color:#b7cfc6;font-size:11px;">کارشناس فناوری اطلاعات ناحیه یک اهواز</div>
+                <div style="color:#e8c96b;font-size:13px;font-weight:900;" id="footerApp">اپلیکیشن «پل ثقلین»</div>
+                <div style="margin-top:8px;font-size:14px;font-weight:800;color:#f7f4e9;" id="footerDesigner">طراحی و رونمایی توسط سحر مهدیان</div>
+                <div style="margin-top:5px;color:#b7cfc6;font-size:11px;" id="footerRole">کارشناس فناوری اطلاعات ناحیه یک اهواز</div>
                 <div style="margin-top:7px;color:#e8c96b;font-size:12px;font-weight:800;">۲۲ مرداد ۱۴۰۵</div>
-                <div style="margin-top:13px;padding-top:12px;border-top:1px solid rgba(226,190,90,0.2);font-size:12px;font-weight:900;color:#f7f4e9;">با تمرکز بر ریاست محترم جناب آقای جاسم صاکی</div>
+                <div style="margin-top:13px;padding-top:12px;border-top:1px solid rgba(226,190,90,0.2);font-size:12px;font-weight:900;color:#f7f4e9;" id="footerFocus">با تمرکز بر ریاست محترم جناب آقای جاسم صاکی</div>
             </div>
         </div>
     </div>
 
     <!-- ===== نویگیشن ===== -->
     <nav class="bottom">
-        <button class="nav active" data-view="home" onclick="go('home')"><span>⌂</span>خانه</button>
-        <button class="nav" data-view="events" onclick="go('events')"><span>✦</span>رویدادها</button>
-        <button class="nav" data-view="honors" onclick="go('honors')"><span>🏆</span>افتخارات</button>
-        <button class="nav" data-view="network" onclick="go('network')"><span>♧</span>شبکه</button>
-        <button class="nav" data-view="archive" onclick="go('archive')"><span>▤</span>آرشیو</button>
+        <button class="nav active" data-view="home" onclick="go('home')"><span>⌂</span><span class="navLabel">خانه</span></button>
+        <button class="nav" data-view="events" onclick="go('events')"><span>✦</span><span class="navLabel">رویدادها</span></button>
+        <button class="nav" data-view="honors" onclick="go('honors')"><span>🏆</span><span class="navLabel">افتخارات</span></button>
+        <button class="nav" data-view="network" onclick="go('network')"><span>♧</span><span class="navLabel">شبکه</span></button>
+        <button class="nav" data-view="archive" onclick="go('archive')"><span>▤</span><span class="navLabel">آرشیو</span></button>
     </nav>
 
     <!-- ===== مودال نصب ===== -->
     <div class="modal" id="install">
         <div class="modalbox">
             <button class="close" onclick="closeInstall()">✕ بستن</button>
-            <h2>پل ثقلین</h2>
-            <p>نسخه نمایشی آماده رونمایی است. برای ارائه روی نمایشگر بزرگ، مرورگر را تمام‌صفحه کنید.</p>
+            <h2 id="modalTitle">پل ثقلین</h2>
+            <p id="modalDesc">نسخه نمایشی آماده رونمایی است. برای ارائه روی نمایشگر بزرگ، مرورگر را تمام‌صفحه کنید.</p>
             <div class="credit">
-                <span>طراحی و رونمایی توسط</span>
+                <span id="modalCredit1">طراحی و رونمایی توسط</span>
                 <b>سحر مهدیان</b>
-                <span>کارشناس فناوری اطلاعات ناحیه یک اهواز</span>
+                <span id="modalCredit2">کارشناس فناوری اطلاعات ناحیه یک اهواز</span>
                 <span class="date">۲۲ مرداد ۱۴۰۵</span>
             </div>
             <div class="qr">پل<br>ثقلین</div>
-            <p class="notice">توجه: فایل ارائه‌شده یک نمونه تعاملی آفلاین است.</p>
-            <button class="top primary" onclick="document.documentElement.requestFullscreen?.();closeInstall();toast('حالت تمام‌صفحه فعال شد')">تمام‌صفحه برای رونمایی</button>
+            <p class="notice" id="modalNotice">توجه: فایل ارائه‌شده یک نمونه تعاملی آفلاین است.</p>
+            <button class="top primary" onclick="document.documentElement.requestFullscreen?.();closeInstall();toast('حالت تمام‌صفحه فعال شد')" id="modalFullscreenBtn">تمام‌صفحه برای رونمایی</button>
+        </div>
+    </div>
+
+    <!-- ===== مودال مدیریت گالری ===== -->
+    <div class="modal" id="galleryManager">
+        <div class="modalbox">
+            <button class="close" onclick="closeGalleryManager()">✕ بستن</button>
+            <h2 id="gmTitle">مدیریت گالری</h2>
+            <p style="margin-bottom:8px;" id="gmDesc">تصاویر جدید را با آدرس (URL) وارد کنید. (فقط مدیر)</p>
+            <input type="text" id="newImageUrl" placeholder="آدرس تصویر (مثال: photo.jpg)" style="width:100%;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(232,201,107,0.25);color:#f7f4e9;font-family:'Vazirmatn',sans-serif;margin-bottom:10px;">
+            <input type="text" id="newImageTitle" placeholder="عنوان تصویر" style="width:100%;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(232,201,107,0.25);color:#f7f4e9;font-family:'Vazirmatn',sans-serif;margin-bottom:10px;">
+            <input type="text" id="newImageDesc" placeholder="توضیح (اختیاری)" style="width:100%;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(232,201,107,0.25);color:#f7f4e9;font-family:'Vazirmatn',sans-serif;margin-bottom:10px;">
+            <button class="top primary" onclick="addGalleryImage()" style="width:100%;" id="gmAddBtn">➕ افزودن تصویر به گالری</button>
+            <hr style="border-color:rgba(232,201,107,0.15);margin:16px 0;">
+            <p class="notice" style="font-size:11px;" id="gmNotice">برای حذف تصویر، روی آن در گالری کلیک کنید و گزینه حذف را انتخاب کنید.</p>
+            <button class="top" onclick="closeGalleryManager()" style="margin-top:8px;" id="gmCloseBtn">بستن</button>
         </div>
     </div>
 
@@ -1043,9 +1199,628 @@
     <div class="photo-modal" id="photoModal" onclick="closePhoto()">
         <button class="photo-close" onclick="event.stopPropagation();closePhoto()">✕ بستن</button>
         <img id="photoPreview" src="" alt="تصویر ویژه رونمایی" onclick="event.stopPropagation()">
+        <div style="position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);padding:8px 18px;border-radius:12px;color:#f7f4e9;font-size:13px;display:none;cursor:pointer;" id="photoDeleteBtn" onclick="deleteGalleryImage()">🗑 حذف تصویر</div>
     </div>
 
     <script>
+        // ===== دیکشنری چندزبانه (همه محتوای سامانه) =====
+        const translations = {
+            fa: {
+                brandTitle: 'پل ثقلین',
+                brandSub: 'بستر دیجیتال جشنواره قرآن، عترت و نماز',
+                installBtn: 'نصب / معرفی',
+                heroEyebrow: 'معرفی اپلیکیشن «پل ثقلین»',
+                heroTitle: 'طلوع عصر جدید در آموزش قرآنی',
+                heroDesc: 'یک پل دیجیتال برای پیوند دانش‌آموزان نخبه قرآنی، مربیان، مدیران و خانواده بزرگ آموزش و پرورش ناحیه یک اهواز؛ با تمرکز بر قرآن، عترت و نماز.',
+                demoBtn: '▶ شروع معرفی اپلیکیشن',
+                eventsBtn: 'مشاهده رویدادها',
+                creditLabel: 'طراحی و رونمایی:',
+                creditRole: 'کارشناس فناوری اطلاعات ناحیه یک اهواز',
+                galleryTitle: 'تصاویر ویژه رونمایی',
+                galleryManageBtn: '➕ مدیریت گالری (مدیر)',
+                galleryResetBtn: '↺ بازنشانی به پیش‌فرض',
+                leadershipEyebrow: 'محور مدیریتی اپلیکیشن',
+                leadershipTitle: 'تقدیم ویژه به ریاست محترم',
+                leadershipDesc: 'این نسخه از «پل ثقلین» با تمرکز بر مدیریت و حمایت راهبردی ریاست محترم آموزش و پرورش ناحیه یک اهواز ارائه می‌شود.',
+                dashboardTitle: 'داشبورد جشنواره',
+                stat1: 'دوره / جشنواره',
+                stat2: 'محور قرآن، عترت، نماز',
+                stat3: 'ارتباط و دسترسی',
+                stat4: 'میراث ماندگار',
+                featuresTitle: 'سه ستون اصلی',
+                f1Title: 'ارتباط با مربیان',
+                f1Desc: 'تعامل مستقیم، دریافت بازخورد و هدایت آموزشی برای دانش‌آموزان.',
+                f2Title: 'بارگذاری آثار',
+                f2Desc: 'بستر یکپارچه برای دریافت و سامان‌دهی آثار دانش‌آموزان و نخبگان قرآنی.',
+                f3Title: 'تالار افتخارات',
+                f3Desc: 'ثبت دائمی دستاوردها و معرفی برگزیدگان به تفکیک رشته و شهرستان.',
+                commentTitle: '📝 نظرات و پیشنهادات',
+                commentPlaceholder: 'نظر، پیشنهاد یا انتقاد خود را با ما در میان بگذارید...',
+                submitCommentBtn: 'ارسال نظر',
+                clearCommentsBtn: 'پاک کردن همه نظرات',
+                noComments: 'هنوز نظری ثبت نشده است. اولین نفر باشید!',
+                eventsPageTitle: 'رویدادها و مسیر جشنواره',
+                tag1: 'قرآن',
+                e1Title: 'آثار نخبگان قرآنی',
+                e1Desc: 'فضایی برای ارائه، آرشیو و دیده‌شدن آثار و استعدادهای برتر.',
+                e1Btn: 'ورود به آثار',
+                tag2: 'عترت',
+                e2Title: 'شبکه مربیان و مدیران',
+                e2Desc: 'ارتباط میان مربیان دلسوز، مدیران و دانش‌آموزان در یک مسیر واحد.',
+                e2Btn: 'مشاهده شبکه',
+                tag3: 'نماز',
+                e3Title: 'ویترین افتخارات',
+                e3Desc: 'معرفی برگزیدگان و ایجاد انگیزه برای سایر دانش‌آموزان.',
+                e3Btn: 'تالار افتخارات',
+                honorsTitle: 'تالار افتخارات',
+                honorsSub: 'ثبت دائمی دستاوردها',
+                honorsDesc: 'اینجا می‌توان برگزیدگان هر دوره را به تفکیک رشته و شهرستان معرفی کرد. این نسخه نمایشی چند نمونه داده برای رونمایی دارد.',
+                h1Name: 'نخبه قرآنی',
+                h1Field: 'رشته قرائت',
+                h2Name: 'برگزیده عترت',
+                h2Field: 'رشته معارف',
+                h3Name: 'افتخار نماز',
+                h3Field: 'رشته اذان',
+                networkTitle: 'شبکه ارتباطی',
+                n1Title: 'مربیان',
+                n1Desc: 'دریافت و ارائه بازخورد، هدایت تحصیلی و تربیتی.',
+                n2Title: 'دانش‌آموزان',
+                n2Desc: 'دسترسی به فرصت‌ها، رویدادها و مسیر رشد.',
+                n3Title: 'مدیران',
+                n3Desc: 'مدیریت ارتباطات و مشارکت در برگزاری جشنواره.',
+                networkMsgTitle: 'پیام شبکه',
+                networkMsg: '«یک پل تنها دو نقطه را به هم متصل نمی‌کند؛ بلکه مسافران خود را به سطحی بالاتر ارتقا می‌دهد.»',
+                archiveTitle: 'آرشیو و میراث دیجیتال',
+                a1Title: 'آثار جشنواره',
+                a1Desc: 'آرشیو منظم آثار، پژوهش‌ها و تولیدات دانش‌آموزی.',
+                a2Title: 'برگزیدگان',
+                a2Desc: 'نگهداری سوابق و دستاوردهای ماندگار نسل‌های مختلف.',
+                a3Title: 'رویدادها',
+                a3Desc: 'ثبت تاریخچه جشنواره‌ها و مسیر تحول تجربه جشنواره.',
+                demoTitle: '🎬 حالت ارائه رسمی',
+                demoNextBtn: 'مرحله بعد ←',
+                demoEndBtn: 'پایان معرفی',
+                footerApp: 'اپلیکیشن «پل ثقلین»',
+                footerDesigner: 'طراحی و رونمایی توسط سحر مهدیان',
+                footerRole: 'کارشناس فناوری اطلاعات ناحیه یک اهواز',
+                footerFocus: 'با تمرکز بر ریاست محترم جناب آقای جاسم صاکی',
+                modalTitle: 'پل ثقلین',
+                modalDesc: 'نسخه نمایشی آماده رونمایی است. برای ارائه روی نمایشگر بزرگ، مرورگر را تمام‌صفحه کنید.',
+                modalCredit1: 'طراحی و رونمایی توسط',
+                modalCredit2: 'کارشناس فناوری اطلاعات ناحیه یک اهواز',
+                modalNotice: 'توجه: فایل ارائه‌شده یک نمونه تعاملی آفلاین است.',
+                modalFullscreenBtn: 'تمام‌صفحه برای رونمایی',
+                gmTitle: 'مدیریت گالری',
+                gmDesc: 'تصاویر جدید را با آدرس (URL) وارد کنید. (فقط مدیر)',
+                gmAddBtn: '➕ افزودن تصویر به گالری',
+                gmNotice: 'برای حذف تصویر، روی آن در گالری کلیک کنید و گزینه حذف را انتخاب کنید.',
+                gmCloseBtn: 'بستن',
+                navHome: 'خانه',
+                navEvents: 'رویدادها',
+                navHonors: 'افتخارات',
+                navNetwork: 'شبکه',
+                navArchive: 'آرشیو',
+                toastAdded: 'تصویر با موفقیت اضافه شد',
+                toastReset: 'گالری بازنشانی شد',
+                toastComment: 'نظر شما با موفقیت ثبت شد',
+                toastClear: 'همه نظرات پاک شدند',
+                toastEmpty: 'لطفاً متن نظر را وارد کنید',
+                toastDelete: 'تصویر حذف شد',
+                toastLang: 'زبان به {lang} تغییر کرد',
+                deleteConfirm: 'آیا مطمئن هستید؟ گالری به حالت پیش‌فرض بازنشانی می‌شود.',
+                clearConfirm: 'آیا مطمئن هستید؟ همه نظرات پاک می‌شوند.',
+                guestName: 'کاربر مهمان'
+            },
+            ar: {
+                brandTitle: 'جسر الثقلين',
+                brandSub: 'المنصة الرقمية لمهرجان القرآن والعترة والصلاة',
+                installBtn: 'تثبيت / تقديم',
+                heroEyebrow: 'تقديم تطبيق "جسر الثقلين"',
+                heroTitle: 'فجر عصر جديد في التعليم القرآني',
+                heroDesc: 'جسر رقمي لربط الطلاب المتميزين في القرآن، والمعلمين، والمديرين، وعائلة التعليم الكبيرة في المنطقة الأولى من الأهواز؛ مع التركيز على القرآن والعترة والصلاة.',
+                demoBtn: '▶ بدء تقديم التطبيق',
+                eventsBtn: 'عرض الفعاليات',
+                creditLabel: 'التصميم والكشف:',
+                creditRole: 'أخصائي تكنولوجيا المعلومات في المنطقة الأولى بالأهواز',
+                galleryTitle: 'صور خاصة للكشف',
+                galleryManageBtn: '➕ إدارة المعرض (مدير)',
+                galleryResetBtn: '↺ إعادة تعيين إلى الافتراضي',
+                leadershipEyebrow: 'المحور الإداري للتطبيق',
+                leadershipTitle: 'إهداء خاص إلى السيد الرئيس المحترم',
+                leadershipDesc: 'هذه النسخة من "جسر الثقلين" تركز على الدعم الإداري والاستراتيجي من قبل السيد رئيس التعليم في المنطقة الأولى بالأهواز.',
+                dashboardTitle: 'لوحة تحكم المهرجان',
+                stat1: 'دورة / مهرجان',
+                stat2: 'محاور القرآن، العترة، الصلاة',
+                stat3: 'التواصل والوصول',
+                stat4: 'إرث دائم',
+                featuresTitle: 'الأعمدة الثلاثة الرئيسية',
+                f1Title: 'التواصل مع المعلمين',
+                f1Desc: 'تفاعل مباشر، تلقي الملاحظات، وتوجيه تعليمي للطلاب.',
+                f2Title: 'تحميل الأعمال',
+                f2Desc: 'منصة متكاملة لاستقبال وتنظيم أعمال الطلاب والمتميزين في القرآن.',
+                f3Title: 'قاعة الشرف',
+                f3Desc: 'تسجيل دائم للإنجازات وتقديم الفائزين حسب التخصص والمدينة.',
+                commentTitle: '📝 الآراء والاقتراحات',
+                commentPlaceholder: 'شاركنا برأيك أو اقتراحك أو نقدك...',
+                submitCommentBtn: 'إرسال الرأي',
+                clearCommentsBtn: 'مسح جميع الآراء',
+                noComments: 'لم يتم تسجيل أي رأي بعد. كن الأول!',
+                eventsPageTitle: 'الفعاليات ومسار المهرجان',
+                tag1: 'القرآن',
+                e1Title: 'أعمال المتميزين القرآنيين',
+                e1Desc: 'مساحة لتقديم وأرشفة وإبراز الأعمال والمواهب المتميزة.',
+                e1Btn: 'الدخول إلى الأعمال',
+                tag2: 'العترة',
+                e2Title: 'شبكة المعلمين والمديرين',
+                e2Desc: 'التواصل بين المعلمين المخلصين والمديرين والطلاب في مسار واحد.',
+                e2Btn: 'عرض الشبكة',
+                tag3: 'الصلاة',
+                e3Title: 'واجهة الشرف',
+                e3Desc: 'تقديم الفائزين وتحفيز الطلاب الآخرين.',
+                e3Btn: 'قاعة الشرف',
+                honorsTitle: 'قاعة الشرف',
+                honorsSub: 'تسجيل دائم للإنجازات',
+                honorsDesc: 'هنا يمكن تقديم الفائزين في كل دورة حسب التخصص والمدينة. هذه النسخة التجريبية تحتوي على نماذج للكشف.',
+                h1Name: 'متميز قرآني',
+                h1Field: 'تخصص التلاوة',
+                h2Name: 'متميز في العترة',
+                h2Field: 'تخصص المعارف',
+                h3Name: 'شرف الصلاة',
+                h3Field: 'تخصص الأذان',
+                networkTitle: 'الشبكة التواصلية',
+                n1Title: 'المعلمون',
+                n1Desc: 'تلقي وتقديم الملاحظات، التوجيه التربوي والتعليمي.',
+                n2Title: 'الطلاب',
+                n2Desc: 'الوصول إلى الفرص والفعاليات ومسار النمو.',
+                n3Title: 'المديرون',
+                n3Desc: 'إدارة التواصل والمشاركة في تنظيم المهرجان.',
+                networkMsgTitle: 'رسالة الشبكة',
+                networkMsg: '"الجسر لا يربط نقطتين فقط، بل يرفع مسافريه إلى مستوى أعلى."',
+                archiveTitle: 'الأرشيف والإرث الرقمي',
+                a1Title: 'أعمال المهرجان',
+                a1Desc: 'أرشيف منظم للأعمال والبحوث والإنتاجات الطلابية.',
+                a2Title: 'الفائزون',
+                a2Desc: 'حفظ سجلات وإنجازات الأجيال المختلفة.',
+                a3Title: 'الفعاليات',
+                a3Desc: 'تسجيل تاريخ المهرجانات ومسار تطور التجربة.',
+                demoTitle: '🎬 وضع التقديم الرسمي',
+                demoNextBtn: 'المرحلة التالية ←',
+                demoEndBtn: 'إنهاء التقديم',
+                footerApp: 'تطبيق "جسر الثقلين"',
+                footerDesigner: 'تصميم وكشف بواسطة سحر مهديان',
+                footerRole: 'أخصائي تكنولوجيا المعلومات في المنطقة الأولى بالأهواز',
+                footerFocus: 'مع التركيز على السيد رئيس التعليم المحترم جاسم صاكي',
+                modalTitle: 'جسر الثقلين',
+                modalDesc: 'النسخة التجريبية جاهزة للكشف. لعرضها على شاشة كبيرة، قم بتكبير المتصفح.',
+                modalCredit1: 'التصميم والكشف بواسطة',
+                modalCredit2: 'أخصائي تكنولوجيا المعلومات في المنطقة الأولى بالأهواز',
+                modalNotice: 'ملاحظة: الملف المقدم هو نموذج تفاعلي غير متصل.',
+                modalFullscreenBtn: 'شاشة كاملة للكشف',
+                gmTitle: 'إدارة المعرض',
+                gmDesc: 'أدخل عنوان (URL) الصورة الجديدة. (للمدير فقط)',
+                gmAddBtn: '➕ إضافة صورة إلى المعرض',
+                gmNotice: 'لحذف صورة، انقر عليها في المعرض واختر خيار الحذف.',
+                gmCloseBtn: 'إغلاق',
+                navHome: 'الرئيسية',
+                navEvents: 'الفعاليات',
+                navHonors: 'الشرف',
+                navNetwork: 'الشبكة',
+                navArchive: 'الأرشيف',
+                toastAdded: 'تمت إضافة الصورة بنجاح',
+                toastReset: 'تم إعادة تعيين المعرض',
+                toastComment: 'تم تسجيل رأيك بنجاح',
+                toastClear: 'تم مسح جميع الآراء',
+                toastEmpty: 'الرجاء إدخال نص الرأي',
+                toastDelete: 'تم حذف الصورة',
+                toastLang: 'تم تغيير اللغة إلى {lang}',
+                deleteConfirm: 'هل أنت متأكد؟ سيتم إعادة تعيين المعرض إلى الوضع الافتراضي.',
+                clearConfirm: 'هل أنت متأكد؟ سيتم مسح جميع الآراء.',
+                guestName: 'مستخدم ضيف'
+            },
+            en: {
+                brandTitle: 'Thaqalain Bridge',
+                brandSub: 'Digital Platform for Quran, Etrat & Prayer Festival',
+                installBtn: 'Install / Intro',
+                heroEyebrow: 'Introducing "Thaqalain Bridge" App',
+                heroTitle: 'Dawn of a New Era in Quranic Education',
+                heroDesc: 'A digital bridge connecting Quranic elite students, educators, administrators, and the larger education community of District 1 in Ahvaz; focusing on Quran, Etrat, and Prayer.',
+                demoBtn: '▶ Start App Demo',
+                eventsBtn: 'View Events',
+                creditLabel: 'Design & Launch:',
+                creditRole: 'IT Expert, District 1 Education, Ahvaz',
+                galleryTitle: 'Launch Gallery',
+                galleryManageBtn: '➕ Manage Gallery (Admin)',
+                galleryResetBtn: '↺ Reset to Default',
+                leadershipEyebrow: 'Management Focus',
+                leadershipTitle: 'Dedicated to the Respected Director',
+                leadershipDesc: 'This version of "Thaqalain Bridge" is presented with a focus on the strategic leadership and support of the respected Director of Education, District 1, Ahvaz.',
+                dashboardTitle: 'Festival Dashboard',
+                stat1: 'Periods / Festivals',
+                stat2: 'Quran, Etrat, Prayer Axis',
+                stat3: 'Connections & Access',
+                stat4: 'Enduring Legacy',
+                featuresTitle: 'Three Main Pillars',
+                f1Title: 'Connect with Educators',
+                f1Desc: 'Direct interaction, feedback, and educational guidance for students.',
+                f2Title: 'Upload Works',
+                f2Desc: 'An integrated platform for receiving and organizing student works and Quranic talents.',
+                f3Title: 'Hall of Fame',
+                f3Desc: 'Permanent record of achievements and introducing winners by field and city.',
+                commentTitle: '📝 Comments & Suggestions',
+                commentPlaceholder: 'Share your comments, suggestions, or feedback...',
+                submitCommentBtn: 'Submit Comment',
+                clearCommentsBtn: 'Clear All Comments',
+                noComments: 'No comments yet. Be the first!',
+                eventsPageTitle: 'Events & Festival Path',
+                tag1: 'Quran',
+                e1Title: 'Quranic Elite Works',
+                e1Desc: 'A space to present, archive, and showcase outstanding works and talents.',
+                e1Btn: 'Enter Works',
+                tag2: 'Etrat',
+                e2Title: 'Educators & Administrators Network',
+                e2Desc: 'Connecting dedicated educators, administrators, and students in one path.',
+                e2Btn: 'View Network',
+                tag3: 'Prayer',
+                e3Title: 'Hall of Fame Showcase',
+                e3Desc: 'Introducing winners and motivating other students.',
+                e3Btn: 'Hall of Fame',
+                honorsTitle: 'Hall of Fame',
+                honorsSub: 'Permanent Record of Achievements',
+                honorsDesc: 'Here you can introduce winners of each period by field and city. This demo version includes sample data for the launch.',
+                h1Name: 'Quranic Elite',
+                h1Field: 'Recitation Field',
+                h2Name: 'Etrat Winner',
+                h2Field: 'Knowledge Field',
+                h3Name: 'Prayer Honor',
+                h3Field: 'Adhan Field',
+                networkTitle: 'Communication Network',
+                n1Title: 'Educators',
+                n1Desc: 'Receive and provide feedback, academic and educational guidance.',
+                n2Title: 'Students',
+                n2Desc: 'Access to opportunities, events, and growth paths.',
+                n3Title: 'Administrators',
+                n3Desc: 'Manage communications and participate in organizing the festival.',
+                networkMsgTitle: 'Network Message',
+                networkMsg: '"A bridge does not just connect two points; it elevates its travelers to a higher level."',
+                archiveTitle: 'Archive & Digital Legacy',
+                a1Title: 'Festival Works',
+                a1Desc: 'Organized archive of works, research, and student productions.',
+                a2Title: 'Winners',
+                a2Desc: 'Preserving records and achievements of different generations.',
+                a3Title: 'Events',
+                a3Desc: 'Recording the history of festivals and the evolution path of the experience.',
+                demoTitle: '🎬 Official Presentation Mode',
+                demoNextBtn: 'Next Stage →',
+                demoEndBtn: 'End Demo',
+                footerApp: '"Thaqalain Bridge" App',
+                footerDesigner: 'Designed & Launched by Sahar Mahdian',
+                footerRole: 'IT Expert, District 1 Education, Ahvaz',
+                footerFocus: 'Focused on the Respected Director, Mr. Jasem Saki',
+                modalTitle: 'Thaqalain Bridge',
+                modalDesc: 'The demo version is ready for launch. For presentation on a large screen, go fullscreen.',
+                modalCredit1: 'Designed & Launched by',
+                modalCredit2: 'IT Expert, District 1 Education, Ahvaz',
+                modalNotice: 'Note: This is an offline interactive demo.',
+                modalFullscreenBtn: 'Go Fullscreen for Launch',
+                gmTitle: 'Gallery Management',
+                gmDesc: 'Enter the image URL. (Admin only)',
+                gmAddBtn: '➕ Add Image to Gallery',
+                gmNotice: 'To delete an image, click on it in the gallery and select the delete option.',
+                gmCloseBtn: 'Close',
+                navHome: 'Home',
+                navEvents: 'Events',
+                navHonors: 'Honors',
+                navNetwork: 'Network',
+                navArchive: 'Archive',
+                toastAdded: 'Image added successfully',
+                toastReset: 'Gallery reset to default',
+                toastComment: 'Your comment was submitted',
+                toastClear: 'All comments cleared',
+                toastEmpty: 'Please enter your comment',
+                toastDelete: 'Image deleted',
+                toastLang: 'Language changed to {lang}',
+                deleteConfirm: 'Are you sure? Gallery will be reset to default.',
+                clearConfirm: 'Are you sure? All comments will be deleted.',
+                guestName: 'Guest User'
+            }
+        };
+
+        // ===== متغیرهای زبان =====
+        let currentLang = 'fa';
+
+        // ===== تابع تغییر زبان (کل سامانه) =====
+        function setLang(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            if (!t) return;
+
+            document.querySelectorAll('.lang-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.lang === lang);
+            });
+
+            // به‌روزرسانی همه المان‌ها
+            document.getElementById('brandTitle').textContent = t.brandTitle;
+            document.getElementById('brandSub').textContent = t.brandSub;
+            document.getElementById('installBtn').textContent = t.installBtn;
+            document.getElementById('heroEyebrow').textContent = t.heroEyebrow;
+            document.getElementById('heroTitle').innerHTML = t.heroTitle.split(' ').map(w => `<span>${w}</span>`).join(' ');
+            document.getElementById('heroDesc').textContent = t.heroDesc;
+            document.getElementById('demoBtn').textContent = t.demoBtn;
+            document.getElementById('eventsBtn').textContent = t.eventsBtn;
+            document.getElementById('creditLabel').textContent = t.creditLabel;
+            document.getElementById('creditRole').textContent = t.creditRole;
+            document.getElementById('galleryTitle').textContent = t.galleryTitle;
+            document.getElementById('galleryManageBtn').textContent = t.galleryManageBtn;
+            document.getElementById('galleryResetBtn').textContent = t.galleryResetBtn;
+            document.getElementById('leadershipEyebrow').textContent = t.leadershipEyebrow;
+            document.getElementById('leadershipTitle').textContent = t.leadershipTitle;
+            document.getElementById('leadershipDesc').textContent = t.leadershipDesc;
+            document.getElementById('dashboardTitle').textContent = t.dashboardTitle;
+            document.getElementById('stat1').textContent = t.stat1;
+            document.getElementById('stat2').textContent = t.stat2;
+            document.getElementById('stat3').textContent = t.stat3;
+            document.getElementById('stat4').textContent = t.stat4;
+            document.getElementById('featuresTitle').textContent = t.featuresTitle;
+            document.getElementById('f1Title').textContent = t.f1Title;
+            document.getElementById('f1Desc').textContent = t.f1Desc;
+            document.getElementById('f2Title').textContent = t.f2Title;
+            document.getElementById('f2Desc').textContent = t.f2Desc;
+            document.getElementById('f3Title').textContent = t.f3Title;
+            document.getElementById('f3Desc').textContent = t.f3Desc;
+            document.getElementById('commentTitle').textContent = t.commentTitle;
+            document.getElementById('commentInput').placeholder = t.commentPlaceholder;
+            document.getElementById('submitCommentBtn').textContent = t.submitCommentBtn;
+            document.getElementById('clearCommentsBtn').textContent = t.clearCommentsBtn;
+            document.getElementById('eventsPageTitle').textContent = t.eventsPageTitle;
+            document.getElementById('tag1').textContent = t.tag1;
+            document.getElementById('e1Title').textContent = t.e1Title;
+            document.getElementById('e1Desc').textContent = t.e1Desc;
+            document.getElementById('e1Btn').textContent = t.e1Btn;
+            document.getElementById('tag2').textContent = t.tag2;
+            document.getElementById('e2Title').textContent = t.e2Title;
+            document.getElementById('e2Desc').textContent = t.e2Desc;
+            document.getElementById('e2Btn').textContent = t.e2Btn;
+            document.getElementById('tag3').textContent = t.tag3;
+            document.getElementById('e3Title').textContent = t.e3Title;
+            document.getElementById('e3Desc').textContent = t.e3Desc;
+            document.getElementById('e3Btn').textContent = t.e3Btn;
+            document.getElementById('honorsTitle').textContent = t.honorsTitle;
+            document.getElementById('honorsSub').textContent = t.honorsSub;
+            document.getElementById('honorsDesc').textContent = t.honorsDesc;
+            document.getElementById('h1Name').textContent = t.h1Name;
+            document.getElementById('h1Field').textContent = t.h1Field;
+            document.getElementById('h2Name').textContent = t.h2Name;
+            document.getElementById('h2Field').textContent = t.h2Field;
+            document.getElementById('h3Name').textContent = t.h3Name;
+            document.getElementById('h3Field').textContent = t.h3Field;
+            document.getElementById('networkTitle').textContent = t.networkTitle;
+            document.getElementById('n1Title').textContent = t.n1Title;
+            document.getElementById('n1Desc').textContent = t.n1Desc;
+            document.getElementById('n2Title').textContent = t.n2Title;
+            document.getElementById('n2Desc').textContent = t.n2Desc;
+            document.getElementById('n3Title').textContent = t.n3Title;
+            document.getElementById('n3Desc').textContent = t.n3Desc;
+            document.getElementById('networkMsgTitle').textContent = t.networkMsgTitle;
+            document.getElementById('networkMsg').textContent = t.networkMsg;
+            document.getElementById('archiveTitle').textContent = t.archiveTitle;
+            document.getElementById('a1Title').textContent = t.a1Title;
+            document.getElementById('a1Desc').textContent = t.a1Desc;
+            document.getElementById('a2Title').textContent = t.a2Title;
+            document.getElementById('a2Desc').textContent = t.a2Desc;
+            document.getElementById('a3Title').textContent = t.a3Title;
+            document.getElementById('a3Desc').textContent = t.a3Desc;
+            document.getElementById('demoTitle').textContent = t.demoTitle;
+            document.getElementById('demoNextBtn').textContent = t.demoNextBtn;
+            document.getElementById('demoEndBtn').textContent = t.demoEndBtn;
+            document.getElementById('footerApp').textContent = t.footerApp;
+            document.getElementById('footerDesigner').textContent = t.footerDesigner;
+            document.getElementById('footerRole').textContent = t.footerRole;
+            document.getElementById('footerFocus').textContent = t.footerFocus;
+            document.getElementById('modalTitle').textContent = t.modalTitle;
+            document.getElementById('modalDesc').textContent = t.modalDesc;
+            document.getElementById('modalCredit1').textContent = t.modalCredit1;
+            document.getElementById('modalCredit2').textContent = t.modalCredit2;
+            document.getElementById('modalNotice').textContent = t.modalNotice;
+            document.getElementById('modalFullscreenBtn').textContent = t.modalFullscreenBtn;
+            document.getElementById('gmTitle').textContent = t.gmTitle;
+            document.getElementById('gmDesc').textContent = t.gmDesc;
+            document.getElementById('gmAddBtn').textContent = t.gmAddBtn;
+            document.getElementById('gmNotice').textContent = t.gmNotice;
+            document.getElementById('gmCloseBtn').textContent = t.gmCloseBtn;
+
+            // نویگیشن
+            document.querySelectorAll('.navLabel').forEach(el => {
+                const parent = el.closest('.nav');
+                if (parent) {
+                    const view = parent.dataset.view;
+                    if (view === 'home') el.textContent = t.navHome;
+                    else if (view === 'events') el.textContent = t.navEvents;
+                    else if (view === 'honors') el.textContent = t.navHonors;
+                    else if (view === 'network') el.textContent = t.navNetwork;
+                    else if (view === 'archive') el.textContent = t.navArchive;
+                }
+            });
+
+            // به‌روزرسانی دمو
+            renderDemo();
+
+            toast(t.toastLang.replace('{lang}', lang === 'fa' ? 'فارسی' : lang === 'ar' ? 'العربية' : 'English'));
+        }
+
+        // ===== ساعت و تاریخ =====
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('datetimeDisplay').textContent = now.toLocaleDateString('fa-IR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'Asia/Tehran'
+            }) + ' ⏳';
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // ===== گالری =====
+        const DEFAULT_GALLERY = [
+            { src: 'leadership.jpg', title: 'ریاست محترم جناب آقای جاسم صاکی', desc: 'مدیریت آموزش و پرورش ناحیه یک اهواز' },
+            { src: 'festival.jpg', title: 'بیست و یکمین جشنواره', desc: 'جشنواره قرآن، عترت و نماز استان خوزستان' },
+            { src: 'management.jpg', title: 'مدیریت با نگاه آینده', desc: 'تمرکز بر توسعه، تصمیم‌گیری مؤثر و هدایت مسئولانه' }
+        ];
+
+        function getGallery() {
+            try {
+                const data = localStorage.getItem('thaqalain_gallery');
+                if (data) {
+                    const parsed = JSON.parse(data);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch(e) {}
+            return [...DEFAULT_GALLERY];
+        }
+
+        function saveGallery(gallery) {
+            localStorage.setItem('thaqalain_gallery', JSON.stringify(gallery));
+        }
+
+        function renderGallery() {
+            const container = document.getElementById('galleryContainer');
+            const gallery = getGallery();
+            container.innerHTML = gallery.map((item, index) => `
+                <div class="card gallery-card" onclick="openPhoto('${item.src}', ${index})">
+                    <img src="${item.src}" alt="${item.title}" loading="eager" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%2317634d%22 width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23e8c96b%22 font-size=%2220%22 font-family=%22sans-serif%22%3E${item.title || 'تصویر'}'%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-body">
+                        <b>${item.title}</b>
+                        <small>${item.desc || ''}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== مدیریت گالری =====
+        function openGalleryManager() {
+            document.getElementById('galleryManager').classList.add('open');
+        }
+
+        function closeGalleryManager() {
+            document.getElementById('galleryManager').classList.remove('open');
+        }
+
+        function addGalleryImage() {
+            const url = document.getElementById('newImageUrl').value.trim();
+            const title = document.getElementById('newImageTitle').value.trim() || 'تصویر جدید';
+            const desc = document.getElementById('newImageDesc').value.trim();
+            if (!url) {
+                toast(translations[currentLang].toastEmpty);
+                return;
+            }
+            const gallery = getGallery();
+            gallery.push({ src: url, title, desc });
+            saveGallery(gallery);
+            renderGallery();
+            document.getElementById('newImageUrl').value = '';
+            document.getElementById('newImageTitle').value = '';
+            document.getElementById('newImageDesc').value = '';
+            toast(translations[currentLang].toastAdded);
+            closeGalleryManager();
+        }
+
+        let pendingDeleteIndex = -1;
+
+        function openPhoto(src, index) {
+            document.getElementById('photoPreview').src = src;
+            document.getElementById('photoModal').classList.add('open');
+            pendingDeleteIndex = index;
+            const deleteBtn = document.getElementById('photoDeleteBtn');
+            deleteBtn.style.display = 'block';
+            deleteBtn.textContent = '🗑 ' + (currentLang === 'fa' ? 'حذف تصویر' : currentLang === 'ar' ? 'حذف الصورة' : 'Delete Image');
+        }
+
+        function deleteGalleryImage() {
+            if (pendingDeleteIndex < 0) return;
+            const gallery = getGallery();
+            if (pendingDeleteIndex < gallery.length) {
+                gallery.splice(pendingDeleteIndex, 1);
+                saveGallery(gallery);
+                renderGallery();
+                toast(translations[currentLang].toastDelete);
+            }
+            closePhoto();
+            pendingDeleteIndex = -1;
+        }
+
+        function resetGallery() {
+            if (confirm(translations[currentLang].deleteConfirm)) {
+                saveGallery([...DEFAULT_GALLERY]);
+                renderGallery();
+                toast(translations[currentLang].toastReset);
+            }
+        }
+
+        // ===== نظرات =====
+        function getComments() {
+            try {
+                const data = localStorage.getItem('thaqalain_comments');
+                if (data) return JSON.parse(data);
+            } catch(e) {}
+            return [];
+        }
+
+        function saveComments(comments) {
+            localStorage.setItem('thaqalain_comments', JSON.stringify(comments));
+        }
+
+        function renderComments() {
+            const list = document.getElementById('commentList');
+            const comments = getComments();
+            const t = translations[currentLang];
+            if (comments.length === 0) {
+                list.innerHTML = `<div class="comment-item" style="border-right-color:transparent;color:#9db8ae;text-align:center;">${t.noComments}</div>`;
+                return;
+            }
+            list.innerHTML = comments.slice().reverse().map(c => `
+                <div class="comment-item">
+                    ${c.text}
+                    <div class="meta">
+                        <span>${c.name || t.guestName}</span>
+                        <span>${c.time || ''}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function submitComment() {
+            const input = document.getElementById('commentInput');
+            const text = input.value.trim();
+            const t = translations[currentLang];
+            if (!text) {
+                toast(t.toastEmpty);
+                return;
+            }
+            const comments = getComments();
+            const now = new Date().toLocaleString('fa-IR', { timeZone: 'Asia/Tehran' });
+            comments.push({
+                text: text,
+                name: 'مدیر (سحر مهدیان)',
+                time: now
+            });
+            saveComments(comments);
+            renderComments();
+            input.value = '';
+            toast(t.toastComment);
+        }
+
+        function clearComments() {
+            const t = translations[currentLang];
+            if (confirm(t.clearConfirm)) {
+                saveComments([]);
+                renderComments();
+                toast(t.toastClear);
+            }
+        }
+
         // ===== توابع اصلی =====
         const views = ['home', 'events', 'honors', 'network', 'archive'];
 
@@ -1078,14 +1853,32 @@
 
         // ===== دمو =====
         let di = 0;
-        const demos = [
-            ['01', 'پل ثقلین', 'یک پل دیجیتال برای پیوند قرآن، عترت و نماز'],
-            ['02', 'ارتباط', 'اتصال دانش‌آموزان، مربیان و مدیران در یک شبکه واحد'],
-            ['03', 'ویترین افتخارات', 'معرفی برگزیدگان و ثبت دائمی دستاوردها'],
-            ['04', 'میراث دیجیتال', 'آرشیو آثار و تجربه جشنواره برای نسل‌های آینده'],
-            ['05', 'جمع‌بندی', 'از یک رویداد محدود به یک تجربه ماندگار دیجیتال'],
-            ['06', 'طراح، رونمایی‌کننده و محور مدیریتی', 'سحر مهدیان | کارشناس فناوری اطلاعات ناحیه یک اهواز | ۲۲ مرداد ۱۴۰۵ | با تمرکز بر ریاست محترم جناب آقای جاسم صاکی']
-        ];
+        const demos = {
+            fa: [
+                ['01', 'پل ثقلین', 'یک پل دیجیتال برای پیوند قرآن، عترت و نماز'],
+                ['02', 'ارتباط', 'اتصال دانش‌آموزان، مربیان و مدیران در یک شبکه واحد'],
+                ['03', 'ویترین افتخارات', 'معرفی برگزیدگان و ثبت دائمی دستاوردها'],
+                ['04', 'میراث دیجیتال', 'آرشیو آثار و تجربه جشنواره برای نسل‌های آینده'],
+                ['05', 'جمع‌بندی', 'از یک رویداد محدود به یک تجربه ماندگار دیجیتال'],
+                ['06', 'طراح، رونمایی‌کننده و محور مدیریتی', 'سحر مهدیان | کارشناس فناوری اطلاعات ناحیه یک اهواز | ۲۲ مرداد ۱۴۰۵ | با تمرکز بر سخنان ارزشمند ریاست محترم جناب آقای جاسم صاکی']
+            ],
+            ar: [
+                ['01', 'جسر الثقلين', 'جسر رقمي لربط القرآن والعترة والصلاة'],
+                ['02', 'التواصل', 'ربط الطلاب والمعلمين والمديرين في شبكة واحدة'],
+                ['03', 'واجهة الشرف', 'تقديم الفائزين وتسجيل الإنجازات الدائمة'],
+                ['04', 'الإرث الرقمي', 'أرشيف الأعمال وتجربة المهرجان للأجيال القادمة'],
+                ['05', 'الخلاصة', 'من حدث محدود إلى تجربة رقمية دائمة'],
+                ['06', 'المصمم والمقدم والمحور الإداري', 'سحر مهديان | أخصائي تكنولوجيا المعلومات في المنطقة الأولى بالأهواز | ۲۲ مرداد ۱۴۰۵ | مع التركيز على السيد رئيس التعليم المحترم جاسم صاكي']
+            ],
+            en: [
+                ['01', 'Thaqalain Bridge', 'A digital bridge connecting Quran, Etrat, and Prayer'],
+                ['02', 'Connection', 'Connecting students, educators, and administrators in one network'],
+                ['03', 'Hall of Fame', 'Introducing winners and permanent record of achievements'],
+                ['04', 'Digital Legacy', 'Archive of works and festival experience for future generations'],
+                ['05', 'Summary', 'From a limited event to a lasting digital experience'],
+                ['06', 'Designer, Presenter & Management Focus', 'Sahar Mahdian | IT Expert, District 1 Education, Ahvaz | ۲۲ مرداد ۱۴۰۵ | Focused on the Respected Director, Mr. Jasem Saki']
+            ]
+        };
 
         function startDemo() {
             document.getElementById('demo').classList.add('show');
@@ -1095,20 +1888,22 @@
         }
 
         function renderDemo() {
-            const d = demos[di];
+            const d = demos[currentLang] || demos.fa;
+            const item = d[di] || d[0];
             document.getElementById('demoStage').innerHTML = `
                 <div>
-                    <div class="big">${d[0]}</div>
-                    <h2>${d[1]}</h2>
-                    <p class="notice">${d[2]}</p>
+                    <div class="big">${item[0]}</div>
+                    <h2>${item[1]}</h2>
+                    <p class="notice">${item[2]}</p>
                 </div>
             `;
         }
 
         function nextDemo() {
-            di = (di + 1) % demos.length;
+            const d = demos[currentLang] || demos.fa;
+            di = (di + 1) % d.length;
             renderDemo();
-            if (di === 0) toast('معرفی دوباره از ابتدا شروع شد');
+            if (di === 0) toast(translations[currentLang].toastReset);
         }
 
         function endDemo() {
@@ -1116,14 +1911,10 @@
             go('home');
         }
 
-        // ===== مودال تصویر =====
-        function openPhoto(src) {
-            document.getElementById('photoPreview').src = src;
-            document.getElementById('photoModal').classList.add('open');
-        }
-
         function closePhoto() {
             document.getElementById('photoModal').classList.remove('open');
+            document.getElementById('photoDeleteBtn').style.display = 'none';
+            pendingDeleteIndex = -1;
         }
 
         // ===== کیبورد =====
@@ -1131,14 +1922,26 @@
             if (e.key === 'Escape') {
                 closeInstall();
                 closePhoto();
+                closeGalleryManager();
             }
             if (e.key === 'ArrowLeft') nextDemo();
         });
+
+        // ===== مقداردهی اولیه =====
+        renderGallery();
+        renderComments();
+        setLang('fa');
 
         // ===== سرویس ورکر =====
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').catch(() => {});
         }
+
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.gallery-card')) {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
